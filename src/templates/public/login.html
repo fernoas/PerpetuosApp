@@ -1,0 +1,38 @@
+{%  extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<div id="conteudo">
+
+    
+            
+    <form class="login" action="/login" method="POST">
+        <h2>Tela de Login</h2>
+        <br>
+
+        {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+                <div>
+                    <ul>
+                        {% for msg in mensagens %}
+                            <li class="message">{{ msg }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <input type="email" name="email" placeholder="Digite seu email..."/>
+        <input type="password" name="senha" placeholder="Digite sua senha..."/>
+        <input type="submit" name="acao" value="Enviar" />
+    </form>
+    
+</div>
+
+
+
+
+{% endblock %}
