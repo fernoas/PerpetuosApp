@@ -1,4 +1,4 @@
-.login{
+.perfil{
     max-width: 300px;
     width: 70%;
     padding: 20px;
@@ -8,14 +8,14 @@
     transform: translate(-50%, -50%);
 }
 
-.login h3{
+.perfil h3{
     text-align: match-parent;
     color: rgb(33, 33, 36);
     font-family: sans-serif
 }
 
-.login input[type=email],
-.login input[type=password]{
+.perfil input[type=email],
+.perfil input[type=password]{
     width: 100%;
     height: 30px;
     border-radius: 4px ;
@@ -23,7 +23,7 @@
     margin: 10px 0; 
 }
 
-.login input[type=submit]{
+.perfil input[type=submit]{
     width: 100%;
     height: 30px;
     cursor: pointer;
@@ -33,13 +33,10 @@
     /*border-radius: 20px;*/
 }
 
-.login input[type=submit]:hover{
+.perfil input[type=submit]:hover{
     background-color: rgb(3, 0, 0);
 }
 
-.message {
-    color: red;
-    font-size: 20px;
-}
+
 
 

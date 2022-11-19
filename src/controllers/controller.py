@@ -100,7 +100,6 @@ class EditorasController(MethodView):
 
 class LoginController(MethodView):
     def post(self): 
-        msg = '' 
         if request.method == 'POST' and 'email' in request.form and 'senha' in request.form: 
             email = request.form['email'] 
             senha = request.form['senha']
@@ -109,6 +108,7 @@ class LoginController(MethodView):
             with mysql.cursor() as cur: 
                 cur.execute('SELECT * FROM cadastro_cliente WHERE email = %s AND senha = %s', (email, senha)) 
                 account = cur.fetchone()
+                print(account)
             if account: 
                 session['loggedin'] = True
                 return redirect(url_for('index'))                    
@@ -132,6 +132,37 @@ class CarrinhoController(MethodView):
     def get(self):
         pass
         return render_template('public/carrinho.html')
+
+
+class PerfilController(MethodView):
+    def get(self):
+        pass
+        return render_template('public/perfil.html')
+
+    def post(self):
+        if request.method == 'POST' and 'email' in request.form and 'senha_antiga' in request.form and 'senha' in request.form: 
+            email = request.form['email'] 
+            senha_antiga = request.form['senha_antiga']
+            senha = request.form['senha']
+            print(email)
+            print(senha_antiga) 
+            print(senha)
+            with mysql.cursor() as cur: 
+                cur.execute('SELECT senha FROM cadastro_cliente WHERE email = %s', (email)) 
+                account = cur.fetchone()
+                print(account)
+                for i in account:
+                    x = str(i)
+                print(x)
+            if x == senha_antiga:
+                with mysql.cursor() as cur: 
+                    cur.execute('UPDATE cadastro_cliente SET senha = %s WHERE email = %s', (senha, email))
+                    print(senha)
+                    flash('Senha alterada com sucesso!')
+                return render_template('public/perfil.html')
+            else:
+                flash('Senha antiga está incorreta!')
+            return render_template('public/perfil.html')
 
 
 

@@ -18,6 +18,8 @@ app.add_url_rule(routes["login_route"], view_func=routes["logincontroller"])
 
 app.add_url_rule(routes["logout_route"], view_func=routes["logoutcontroller"])
 
+app.add_url_rule(routes["perfil_route"], view_func=routes["perfilcontroller"])
+
 app.add_url_rule(routes["carrinho_route"], view_func=routes["carrinhocontroller"])
 
 app.add_url_rule(routes["delete_route"], view_func=routes["delete_controller"])

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/form.css">
     <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/perfil.css">
 
 </head>
 <body>
@@ -20,10 +21,11 @@
             <li><a href="/carrinho">Carrinho</a></li>
             {% if session['loggedin'] == True %}
                 <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                <li><a href="{{ url_for('perfil')}}">Perfil</a></li>
             {% else %}
                 <li><a href="/login">Login</a></li>
+                <li><a href="/clientes">Cadastro</a></li>
             {% endif %}
-            <li><a href="/clientes">Cadastro</a></li>
             <li><a href="/produtos">Produto</a></li>
         </ul>
     </header>

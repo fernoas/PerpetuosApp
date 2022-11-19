@@ -11,6 +11,7 @@ routes = {
     "editoras_route":"/editoras","editorascontroller":EditorasController.as_view("editoras"),
     "login_route":"/login","logincontroller":LoginController.as_view("login"),
     "logout_route":"/logout","logoutcontroller":LogoutController.as_view("logout"),
+    "perfil_route":"/perfil","perfilcontroller":PerfilController.as_view("perfil"),
     "carrinho_route":"/carrinho","carrinhocontroller":CarrinhoController.as_view("carrinho"),
     
     "delete_route":"/delete/product/<int:code>", "delete_controller": DeleteProdutoController
