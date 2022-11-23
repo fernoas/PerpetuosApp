@@ -2,6 +2,7 @@
 from flask.views import MethodView
 from flask import request, render_template, redirect, session, flash, url_for
 from src.db import mysql
+from src import db
 import sys
 
 
@@ -69,7 +70,16 @@ class ProdutosController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("INSERT INTO cadastro_produto(tipo_produto,nome_produto,editora,preco) VALUES(%s,%s,%s,%s)",(tipo_produto,nome_produto,editora,preco))
             cur.connection.commit()
-        return redirect('/produtos')
+        return redirect('/listaprodutos')
+
+class ListaProdutosController(MethodView):
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM cadastro_produto")
+            data = cur.fetchall
+            for n in data:
+                print(n)
+            return render_template('public/listaprodutos.html', data=data)
 
 
 
@@ -89,7 +99,7 @@ class ClientesController(MethodView):
         with mysql.cursor() as cur:
             cur.execute("INSERT INTO cadastro_cliente(nome,email,senha) VALUES(%s,%s,%s)",(nome,email,senha))
             cur.connection.commit()
-        return redirect('/clientes')
+        return redirect('/login')
 
 
 class EditorasController(MethodView):
@@ -156,13 +166,32 @@ class PerfilController(MethodView):
                 print(x)
             if x == senha_antiga:
                 with mysql.cursor() as cur: 
-                    cur.execute('UPDATE cadastro_cliente SET senha = %s WHERE email = %s', (senha, email))
+                    cur.execute('UPDATE cadastro_cliente SET senha = %s WHERE email = %s ', (senha, email))
                     print(senha)
+                    cur.connection.commit()
                     flash('Senha alterada com sucesso!')
+                    cur.close()
                 return render_template('public/perfil.html')
             else:
                 flash('Senha antiga está incorreta!')
             return render_template('public/perfil.html')
+
+
+class ExcluirPerfilController(MethodView):
+    def get(self):
+        pass
+        return render_template('public/excluirperfil.html')
+
+    def post(self):
+        if request.method == 'POST' and 'email' in request.form:
+            email = request.form['email']
+            with mysql.cursor() as cur: 
+                    cur.execute('DELETE FROM cadastro_cliente WHERE email = %s', (email))
+                    cur.connection.commit()
+            session['loggedin'] = False
+            return redirect('/')
+            
+                
 
 
 

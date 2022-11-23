@@ -9,8 +9,8 @@
 
     
             
-    <form class="perfil" action="/perfil" method="POST">
-        <h2>Perfil</h2>
+    <form class="perfil" action="/excluirperfil" method="POST">
+        <h2>Insira o email do perfil a ser deletado</h2>
         <br>
 
         {% with mensagens = get_flashed_messages() %}
@@ -26,13 +26,9 @@
         {% endwith %}
 
         <input type="email" name="email" placeholder="Usuário/Email"/>
-        <input type="password" name="senha_antiga" placeholder="Digite sua senha antiga"/>
-        <input type="password" name="senha" placeholder="Digite sua senha nova"/>
-        <input type="submit" name="acao" value="Alterar" />
         <br>
         <br>
-        <br>
-        <a href="/excluirperfil" >Excluir Perfil</a>
+        <input type="submit" name="acao" value="Deletar" />
         
 
     </form>

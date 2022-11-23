@@ -7,11 +7,13 @@ routes = {
 
     "insert_route":"/","insertcontroller":InsertController.as_view("index"),
     "produtos_route":"/produtos","produtoscontroller":ProdutosController.as_view("produtos"),
+    "listaprodutos_route":"/listaprodutos","listaprodutoscontroller":ListaProdutosController.as_view("listaprodutos"),
     "clientes_route":"/clientes","clientescontroller":ClientesController.as_view("clientes"),
     "editoras_route":"/editoras","editorascontroller":EditorasController.as_view("editoras"),
     "login_route":"/login","logincontroller":LoginController.as_view("login"),
     "logout_route":"/logout","logoutcontroller":LogoutController.as_view("logout"),
     "perfil_route":"/perfil","perfilcontroller":PerfilController.as_view("perfil"),
+    "excluirperfil_route":"/excluirperfil","excluirperfilcontroller":ExcluirPerfilController.as_view("excluirperfil"),
     "carrinho_route":"/carrinho","carrinhocontroller":CarrinhoController.as_view("carrinho"),
     
     "delete_route":"/delete/product/<int:code>", "delete_controller": DeleteProdutoController
