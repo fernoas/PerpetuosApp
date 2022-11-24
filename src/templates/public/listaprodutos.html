@@ -6,12 +6,13 @@
 
 <div id="conteudo">
     
-    <form class="form" action="/produtos" method="post">
+    <form class="" action="/listaprodutos" method="post">
         <h2>Lista de Produtos</h2>
         <br>
-        
-        
-        <input type="submit" name="acao" value="Enviar" />        
+        {% for produto in data %}
+            <p>{{ produto.0 }} {{ produto.1 }} {{ produto.2 }} {{ produto.3 }} {{ produto.4 }} <input type="submit" name="acao" value="Deletar" /></p><br>
+        {% endfor %}
+              
     </form>
     
 

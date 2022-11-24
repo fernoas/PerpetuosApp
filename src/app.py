@@ -26,7 +26,7 @@ app.add_url_rule(routes["excluirperfil_route"], view_func=routes["excluirperfilc
 
 app.add_url_rule(routes["carrinho_route"], view_func=routes["carrinhocontroller"])
 
-app.add_url_rule(routes["delete_route"], view_func=routes["delete_controller"])
+app.add_url_rule(routes["deleteproduto_route"], view_func=routes["deleteprodutocontroller"])
 
 app.add_url_rule(routes["update_route"], view_func=routes["update_controller"])
 

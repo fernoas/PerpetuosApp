@@ -3,6 +3,15 @@
 
 {% block content %}
 
+{% with mensagens = get_flashed_messages() %}
+    {% if mensagens %}
+        {% for msg in mensagens %}
+            {{ msg }}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{{ email }}
 <main class="main">
     <h3>Novidades</h3>
 

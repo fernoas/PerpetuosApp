@@ -47,8 +47,7 @@ class DeleteProdutoController(MethodView):
 
 class UpdateProdutoController(MethodView):
     def get():
-        with mysql.cursor() as cur:
-            pass
+        pass
         return "deletado com sucesso"
 
 
@@ -74,12 +73,26 @@ class ProdutosController(MethodView):
 
 class ListaProdutosController(MethodView):
     def get(self):
-        with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM cadastro_produto")
-            data = cur.fetchall
-            for n in data:
-                print(n)
-            return render_template('public/listaprodutos.html', data=data)
+        if "/listaprodutos":
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM cadastro_produto")
+                data = cur.fetchall()
+                print(data)
+        return render_template('public/listaprodutos.html', data=data)
+
+
+class DeleteProdutoController(MethodView):
+    def get(self):
+        return render_template('public/listaprodutos.html')
+
+    def post(self):
+        if request.method == 'POST' and 'nome_produto' in request.form:
+            nome = request.form('nome_produto')
+            with mysql.cursor() as cur:
+                cur.execute("DELETE FROM produtos WHERE nome_produto = %s",(nome))
+                cur.connection.commit()
+                cur.close()
+        return render_template('public/listaprodutos.html')
 
 
 
@@ -121,6 +134,8 @@ class LoginController(MethodView):
                 print(account)
             if account: 
                 session['loggedin'] = True
+                flash('Bem vindo ao site,')
+                flash(email)
                 return redirect(url_for('index'))                    
             else: 
                 flash("Usuário ou senha incorretos!")
