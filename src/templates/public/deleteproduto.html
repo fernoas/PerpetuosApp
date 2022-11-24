@@ -1,0 +1,23 @@
+{%  extends "base.html" %}
+
+
+
+{% block content %}
+
+
+<div id="conteudo">
+    
+    <form class="form" action="/deleteproduto" method="POST">
+        <h2>Exclusão de Produtos</h2>
+        <br>
+        <input type="number" name="idcadastro_produto" placeholder="Digite o Número do Produto" >
+        <br> 
+        <br>     
+        <input type="submit" name="acao" value="Deletar" />        
+    </form>
+    
+
+</div>
+
+
+{% endblock %}

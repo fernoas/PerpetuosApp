@@ -82,17 +82,21 @@ class ListaProdutosController(MethodView):
 
 
 class DeleteProdutoController(MethodView):
-    def get(self):
-        return render_template('public/listaprodutos.html')
 
     def post(self):
-        if request.method == 'POST' and 'nome_produto' in request.form:
-            nome = request.form('nome_produto')
+        if request.method == 'POST' and 'idcadastro_produto' in request.form:
+            code = request.form ['idcadastro_produto']
+            print(code)
             with mysql.cursor() as cur:
-                cur.execute("DELETE FROM produtos WHERE nome_produto = %s",(nome))
+                cur.execute("DELETE FROM cadastro_produto WHERE idcadastro_produto = %s",(code))
                 cur.connection.commit()
                 cur.close()
-        return render_template('public/listaprodutos.html')
+        return redirect('/listaprodutos')
+    
+    
+    def get(self):
+        pass
+        return render_template('public/deleteproduto.html')
 
 
 
@@ -150,7 +154,7 @@ class LogoutController(MethodView):
         session.pop('loggedin', None)
         session.pop('id', None)
         session.pop('username', None)
-        return redirect(url_for('login'))      
+        return redirect(url_for('index'))      
 
 
 class CarrinhoController(MethodView):

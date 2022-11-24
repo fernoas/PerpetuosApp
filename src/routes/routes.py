@@ -16,7 +16,7 @@ routes = {
     "excluirperfil_route":"/excluirperfil","excluirperfilcontroller":ExcluirPerfilController.as_view("excluirperfil"),
     "carrinho_route":"/carrinho","carrinhocontroller":CarrinhoController.as_view("carrinho"),
     
-    "deleteproduto_route":"/listaprodutos","deleteprodutocontroller": DeleteProdutoController
+    "deleteproduto_route":"/deleteproduto","deleteprodutocontroller": DeleteProdutoController
 .as_view("deleteproduto"),
 
 
